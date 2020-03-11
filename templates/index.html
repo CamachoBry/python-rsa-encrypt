@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <title>RSA-Encryptor</title>
+  </head>
+  <body>
+    <div class="container" style="text-align: center;">
+      <img src="https://cdn.worldvectorlogo.com/logos/rsa-22.svg" alt="" class="logo" style="width: 100px; height: 100px;"/>
+      <h1>Python RSA Encryptor</h1>
+      {% if message %}
+      <p class="message-fail">{{message | safe}}</p>
+      {% endif %}
+      <form action="/submit" method="POST">
+        <div class="form-group">
+          <h3>Insert a message:</h3>
+          <textarea
+            style="width: 500px;"
+            name="message"
+            id=""
+            cols="30"
+            rows="10"
+            placeholder="Enter message here."
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <h3>Select Action:</h3>
+          <input type="radio" name="encrypted" value="true" checked /> Encrypt
+          <input type="radio" name="encrypted" value="false" /> Decrypt
+        </div>
+        <input type="submit" value="Submit" class="btn" style="margin: 20px;"/>
+      </form>
+      <br />
+    </div>
+    {% if encrypted %}
+    <h3 class="message-succes-header">{{type}} message</h3>
+    <p class="message-succes">{{encrypted | safe}}</p>
+    {% endif %}
+  </body>
+</html>
