@@ -21,15 +21,15 @@ def index():
 def submit():
     if request.method == 'POST':
         message = request.form['message']
-        encrypted = request.form['encrypted']
+        encry = request.form['encry']
         
         # Validating input
         if message == '':
             return render_template('index.html', message='Please enter required fields')
-        elif len(message) > 200 and encrypted == 'true':
-            return render_template('index.html', message='Please insert an string with less than 200 characters')
+        elif len(message) > 40 and encry == 'true':
+            return render_template('index.html', message='Please insert an string with less than 40 characters')
         # Encrypting Message        
-        if encrypted == 'true':
+        if encry == 'true':
             bit_message = b64encode(message.encode())
             cyphered_encryption = pkc.new(set_of_keys)
             encrypted_message = b64encode(cyphered_encryption.encrypt(bit_message)).decode()
